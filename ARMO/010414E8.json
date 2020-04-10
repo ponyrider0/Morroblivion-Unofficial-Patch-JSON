@@ -1,0 +1,37 @@
+{
+    "Record Header": {
+        "Signature": "ARMO", 
+        "Data Size": 256, 
+        "Record Flags": {}, 
+        "FormID": "010414E8", 
+        "Version Control Info": "00 00 00 00"
+    }, 
+    "EDID - Editor ID": "0shieldofwounds", 
+    "FULL - Name": "Shield Of Wounds", 
+    "SCRI - Script": "mwCWUTargetItemScript [SCPT:06014FE7]", 
+    "ENAM - Enchantment": "mwCWUTargetEn [ENCH:06016CCF]", 
+    "BMDT - BMDT": {
+        "Biped Flags": {
+            "Shield": true
+        }, 
+        "General Flags": {
+            "Heavy armor": true
+        }, 
+        "Unused": "70"
+    }, 
+    "Male biped model": {
+        "MODL - Model FileName": "VvardenfellArmormod\\dwemer\\shield.nif", 
+        "MODB - Bound Radius": 0.000000000000000
+    }, 
+    "Male world model": {
+        "MOD2 - Model FileName": "VvardenfellArmormod\\dwemer\\shield.nif", 
+        "MO2B - Bound Radius": 0.000000000000000
+    }, 
+    "ICON - Male icon FileName": "darthsouth\\Armors\\Heavy Armor\\dwemershield.dds", 
+    "DATA - DATA": {
+        "Armor": 2000, 
+        "Value": 620, 
+        "Health": 400, 
+        "Weight": 15.000000000000000
+    }
+}

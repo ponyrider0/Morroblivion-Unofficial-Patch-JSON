@@ -1,0 +1,33 @@
+{
+    "Record Header": {
+        "Signature": "CLOT", 
+        "Data Size": 231, 
+        "Record Flags": {}, 
+        "FormID": "0102BB2F", 
+        "Version Control Info": "00 00 00 00"
+    }, 
+    "EDID - Editor ID": "fbmwRingofWizardsFire", 
+    "FULL - Name": "Ring of Wizard's Fire", 
+    "SCRI - Script": "mwCWUTargetItemScript [SCPT:06014FE7]", 
+    "ENAM - Enchantment": "mwCWUTargetEn [ENCH:06016CCF]", 
+    "BMDT - BMDT": {
+        "Biped Flags": {
+            "Right Ring": true
+        }, 
+        "General Flags": {}, 
+        "Unused": "00"
+    }, 
+    "Male biped model": {
+        "MODL - Model FileName": "Clothes\\Ring\\Novice01.NIF", 
+        "MODB - Bound Radius": 0.000000000000000
+    }, 
+    "Male world model": {
+        "MOD2 - Model FileName": "Clothes\\Ring\\Novice01.NIF", 
+        "MO2B - Bound Radius": 1.306687000000000
+    }, 
+    "ICON - Male icon FileName": "darthsouth\\Clothing\\Rings\\expensive2.dds", 
+    "DATA - DATA": {
+        "Value": 56, 
+        "Weight": 0.100000000000000
+    }
+}

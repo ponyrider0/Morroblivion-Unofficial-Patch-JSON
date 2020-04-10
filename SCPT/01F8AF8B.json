@@ -1,0 +1,95 @@
+{
+    "Record Header": {
+        "Signature": "SCPT", 
+        "Data Size": 2567, 
+        "Record Flags": {}, 
+        "FormID": "01F8AF8B", 
+        "Version Control Info": "00 00 00 00"
+    }, 
+    "EDID - Editor ID": "fbmwBMWerewolfWilderness", 
+    "SCHR - Basic Script Data": {
+        "Unused": "00 00 00 00", 
+        "RefCount": 8, 
+        "CompiledSize": 660, 
+        "VariableCount": 6, 
+        "Type": "Object:0"
+    }, 
+    "SCDA - Compiled Script": "1D 00 00 00 10 00 08 00 0A 00 3A 00 00 00 00 00 15 00 07 00 73 02 00 02 00 20 31 16 00 0D 00 01 00 09 00 20 73 01 00 20 31 20 3D 3D 83 18 12 00 01 05 00 52 02 00 01 0B 00 58 00 00 CE 10 04 00 00 00 19 00 00 00 11 00 00 00 10 00 06 00 00 00 40 02 00 00 15 00 0B 00 66 06 00 06 00 20 58 CE 10 00 00 16 00 19 00 02 00 15 00 20 73 04 00 20 30 20 3D 3D 20 73 03 00 20 31 20 3D 3D 20 26 26 65 17 13 00 01 12 00 56 02 00 00 05 00 58 01 00 1D 17 04 00 00 00 00 15 00 07 00 73 04 00 02 00 20 31 19 00 00 00 16 00 0A 00 01 00 06 00 20 58 E7 14 00 00 15 00 07 00 47 03 00 02 00 20 31 19 00 00 00 16 00 0D 00 09 00 09 00 20 47 03 00 20 31 20 3D 3D 16 00 0D 00 03 00 09 00 20 73 01 00 20 31 20 3D 3D 83 18 0F 00 01 05 00 52 04 00 01 08 00 56 04 00 00 06 00 83 18 0F 00 01 05 00 52 05 00 01 08 00 56 04 00 00 06 00 15 00 07 00 47 03 00 02 00 20 30 18 00 0D 00 03 00 09 00 20 73 01 00 20 30 20 3D 3D 83 18 17 00 01 05 00 52 06 00 02 08 00 56 04 00 00 06 00 08 00 56 02 00 00 05 00 83 18 0F 00 01 05 00 52 05 00 01 08 00 56 04 00 00 06 00 15 00 07 00 47 03 00 02 00 20 30 19 00 00 00 19 00 00 00 16 00 18 00 01 00 14 00 20 47 07 00 20 36 20 3E 20 47 07 00 20 32 31 20 3C 20 26 26 15 00 07 00 73 03 00 02 00 20 31 17 00 02 00 01 00 15 00 07 00 73 03 00 02 00 20 30 19 00 00 00 16 00 19 00 06 00 15 00 20 73 01 00 20 31 20 3D 3D 20 73 03 00 20 31 20 3D 3D 20 26 26 83 18 17 00 01 05 00 52 06 00 02 08 00 56 04 00 00 06 00 08 00 56 02 00 00 05 00 83 18 0F 00 01 05 00 52 02 00 01 08 00 56 04 00 00 06 00 83 18 0F 00 01 05 00 52 05 00 01 08 00 56 04 00 00 06 00 0F 10 09 00 02 00 21 00 6E 0A 00 00 00 17 10 00 00 15 00 07 00 73 01 00 02 00 20 30 18 00 19 00 05 00 15 00 20 73 01 00 20 31 20 21 3D 20 73 03 00 20 31 20 21 3D 20 26 26 83 18 0F 00 01 05 00 52 04 00 01 08 00 56 04 00 00 06 00 83 18 0F 00 01 05 00 52 08 00 01 08 00 56 04 00 00 06 00 83 18 0F 00 01 05 00 52 05 00 01 08 00 56 04 00 00 06 00 0F 10 09 00 02 00 21 00 6E 64 00 00 00 15 00 07 00 73 01 00 02 00 20 31 19 00 00 00 11 00 00 00", 
+    "SCTX - Script Source": "scn fbmwBMWerewolfWilderness\n\n;just a generic Werewolf script\n;TODO FIX\nshort iswerewolf\nshort imdead\nshort isday\nshort GetPathOnce\nstring_var modelpath\nref myself\n;The mere existance of the original form of this script has the possibility to overtax the engine\nbegin ondeath\n	set imdead to 1\n	if (iswerewolf == 1)\n		Call fbmwBMWerewolfUnequip this \n	endif\nend\nbegin gamemode\n	set myself to GetSelf\n	;this is prettier the assigning getself\n	if(GetPathOnce == 0) && (isday == 1); to avoid savegame bloat\n		Let modelpath := myself.GetModelPath\n		set GetPathOnce to 1\n	endif\n	if(GetGameLoaded)\n		;Fix this only happen once\n		set fbmwbmGameLoaded to 1\n	endif\n	if(fbmwbmGameLoaded == 1)\n		if(iswerewolf == 1)\n			Call fbmwBMWerewolfTransform myself\n			Call fbmwUpdate3D myself\n			set fbmwbmGameLoaded to 0\n		elseif(iswerewolf == 0)\n			Call fbmwBMWerewolfRollBack myself modelpath	\n			Call fbmwUpdate3D myself\n			set fbmwbmGameLoaded to 0\n		endif\n\n	endif\n	if (GameHour > 6)&&(GameHour < 21)\n		set isday to 1\n	else\n		set isday to 0\n	endif\n	if (iswerewolf == 1)&&(isday == 1)\n		call fbmwBMWerewolfRollBack myself modelpath\n		call fbmwBMWerewolfUnequip myself\n		call fbmwUpdate3D myself\n		SetAV aggression 10\n		StopCombat\n		set iswerewolf to 0\n	elseif (iswerewolf != 1)&&(isday != 1)\n		call fbmwBMWerewolfTransform myself\n		call fbmwBMWerewolfEquip myself\n		call fbmwUpdate3D myself\n		SetAV aggression 100\n		set iswerewolf to 1\n	endif\nend\n;<CSEBlock>\n;<CSECaretPos> 1113 </CSECaretPos>\n;</CSEBlock>", 
+    "Local Variables": [
+        {
+            "SLSD - Local Variable Data": {
+                "Index": "00000001", 
+                "Unused": "00 00 00 00 00 00 00 00 00 00 00 00", 
+                "Flags": {
+                    "IsLongOrShort": true
+                }, 
+                "Unused": "00 00 00 00 00 00 00"
+            }, 
+            "SCVR - Name": "iswerewolf"
+        }, 
+        {
+            "SLSD - Local Variable Data": {
+                "Index": "00000002", 
+                "Unused": "00 00 00 00 00 00 00 00 00 00 00 00", 
+                "Flags": {
+                    "IsLongOrShort": true
+                }, 
+                "Unused": "00 00 00 00 00 00 00"
+            }, 
+            "SCVR - Name": "imdead"
+        }, 
+        {
+            "SLSD - Local Variable Data": {
+                "Index": "00000003", 
+                "Unused": "00 00 00 00 00 00 00 00 00 00 00 00", 
+                "Flags": {
+                    "IsLongOrShort": true
+                }, 
+                "Unused": "CD CD CD CD CD CD CD"
+            }, 
+            "SCVR - Name": "isday"
+        }, 
+        {
+            "SLSD - Local Variable Data": {
+                "Index": "00000004", 
+                "Unused": "00 00 00 00 00 00 00 00 00 00 00 00", 
+                "Flags": {
+                    "IsLongOrShort": true
+                }, 
+                "Unused": "CD CD CD CD CD CD CD"
+            }, 
+            "SCVR - Name": "GetPathOnce"
+        }, 
+        {
+            "SLSD - Local Variable Data": {
+                "Index": "00000005", 
+                "Unused": "00 00 00 00 00 00 00 00 00 00 00 00", 
+                "Flags": {
+                    "IsLongOrShort": true
+                }, 
+                "Unused": "CD CD CD CD CD CD CD"
+            }, 
+            "SCVR - Name": "modelpath"
+        }, 
+        {
+            "SLSD - Local Variable Data": {
+                "Index": "00000006", 
+                "Unused": "00 00 00 00 00 00 00 00 00 00 00 00", 
+                "Flags": {}, 
+                "Unused": "CD CD CD CD CD CD CD"
+            }, 
+            "SCVR - Name": "myself"
+        }
+    ], 
+    "References": [
+        "SCRV - Local Variable": "00000006", 
+        "SCRO - Global Reference": "fbmwBMWerewolfUnequip [SCPT:060132C3]", 
+        "SCRO - Global Reference": "fbmwbmGameLoaded [GLOB:01046CBD]", 
+        "SCRO - Global Reference": "fbmwBMWerewolfTransform [SCPT:060119D9]", 
+        "SCRO - Global Reference": "fbmwUpdate3D [SCPT:060132C6]", 
+        "SCRO - Global Reference": "fbmwBMWerewolfRollBack [SCPT:060119DA]", 
+        "SCRO - Global Reference": "GameHour [GLOB:00000038]", 
+        "SCRO - Global Reference": "fbmwBMWerewolfEquip [SCPT:060119DD]"
+    ]
+}

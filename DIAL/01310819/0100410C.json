@@ -1,0 +1,12 @@
+{
+    "Topic": "1RedoranSHortator [DIAL:01310819]", 
+    "Record Header": {
+        "Signature": "INFO", 
+        "Data Size": 0, 
+        "Record Flags": {
+            "Deleted": true
+        }, 
+        "FormID": "0100410C", 
+        "Version Control Info": "00 00 00 00"
+    }
+}
